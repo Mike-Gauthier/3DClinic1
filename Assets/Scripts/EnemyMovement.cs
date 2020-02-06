@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    float speed = 1f;
+    GameManager gm;
+    Rigidbody rb;
 
+    void Start() {
+        rb = gameObject.GetComponent<Rigidbody>();
+        GameObject temp;
+        temp = GameObject.Find("GameManager");
+        gm = temp.GetComponent<GameManager>();
+    }
+    
     void FixedUpdate(){
-        //move enemy
+        //move enemy towards player
+        rb.velocity = -transform.forward * gm.enemySpeed;
     }
 }

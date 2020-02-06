@@ -5,19 +5,30 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    PlayerHealth player;              //reference to playerMovement script
-    LevelGenerator generator;
-    GameObject playerObj;
-    int score = 0;
-    bool playerAlive = true;
-    Coroutine scoreVar;
+    //Scripts
+    LevelGenerator generator;           
+    PlayerHealth player;
     
-    Text scoreText;
-    GameObject objText;
+    //Various
+    bool playerAlive = true;
+    public float enemySpeed;
+    public float planeSpeed;
+    GameObject playerObj;
+    
+    //UI
     public GameObject gameOverMenu;
-    public Text endScoreText;
+    public Text endScoreText;                               //scoretext on game over screen
+    GameObject objText;                                     //objective text shown at beginning of game
+    Coroutine scoreVar;                   
+    Text scoreText;                                         //score counter at bottom left
+    int score = 0;                                          //variable for score
     
     void Start(){
+        //sets default speed for planes and enemies
+        planeSpeed = 1.25f;
+        enemySpeed = 1.5f;
+
+        //various variable assignment
         GameObject temp;
         temp = GameObject.Find("Player");
         player = temp.GetComponent<PlayerHealth>();
@@ -26,26 +37,22 @@ public class GameManager : MonoBehaviour
         temp = GameObject.Find("ScoreText");
         objText = GameObject.Find("ObjectiveText");
         scoreText = temp.GetComponent<Text>();
-        scoreVar = StartCoroutine(scoring());
+        
+        //start coroutines
+        scoreVar = StartCoroutine(scoring());               //start counting score
         StartCoroutine(startUp());
     }
 
-    void Update() {
-        if(Input.GetKeyDown(KeyCode.E)){
-            gameOver();
-            Debug.Log("Pressed 'E', game over sequence running");
-        }
-    }
-
-    //when player reaches 0 health
+    //when player reaches 0 health (collides with enemy or obstacle)
     public void gameOver(){
         scoreText.enabled = false;
         endScoreText.text = "Final Score: " + score;
-        gameOverMenu.SetActive(true);
-        //freeze all enemies
+        gameOverMenu.SetActive(true);                       //enables game over menu UI
+        enemySpeed = 0f;                                    //freeze all enemies
+        planeSpeed = 0f;
         player.enabled = false;
-        generator.enabled = false;
-        StopAllCoroutines();                    //stops scoring coroutine
+        generator.enabled = false;                          //disables level generator
+        StopAllCoroutines();                                //stops scoring coroutine
     }
 
     //hides objective text after 3 seconds
