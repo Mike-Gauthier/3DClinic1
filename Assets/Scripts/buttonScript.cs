@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class buttonScript : MonoBehaviour
+public class ButtonScript : MonoBehaviour
 {
     //quits application
     public void quitGame(){
