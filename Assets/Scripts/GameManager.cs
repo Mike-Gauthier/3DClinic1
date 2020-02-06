@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
     public float enemySpeed;
     public float planeSpeed;
     GameObject playerObj;
+
+    //LevelGen
+    public int enemies = 0;
+    public int obstacles = 0;
     
     //UI
     public GameObject gameOverMenu;
@@ -25,12 +29,11 @@ public class GameManager : MonoBehaviour
     
     void Start(){
         //sets default speed for planes and enemies
-        planeSpeed = 1.25f;
-        enemySpeed = 1.5f;
+        planeSpeed = 2.25f;
+        enemySpeed = 2.5f;
 
         //various variable assignment
-        GameObject temp;
-        temp = GameObject.Find("Player");
+        GameObject temp = GameObject.Find("Player");
         player = temp.GetComponent<PlayerHealth>();
         temp = GameObject.Find("LevelGen");
         generator = temp.GetComponent<LevelGenerator>();
@@ -63,6 +66,7 @@ public class GameManager : MonoBehaviour
     
     //gives player score
     IEnumerator scoring(){
+        yield return new WaitForSeconds(3f);
         while(playerAlive){
             score += 10;
             scoreText.text = "Score: " + score;

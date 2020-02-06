@@ -19,6 +19,32 @@ public class PlayerHealth : MonoBehaviour
     void Update(){
         playerInput();
         //player movement between lanes
+    }
+
+    void OnTriggerEnter(Collider col) {
+        //Check for enemy or obstacle damage
+        if(col.tag == "Enemy" || col.tag == "Obstacle"){
+            health = 0;
+            gm.gameOver();
+        }
+    }
+
+    //takes player input to change lanes
+    void playerInput(){
+        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)){
+            if(laneNum != 1){
+                laneNum -= 1;
+                switchLanes();
+            }
+        }else if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)){
+            if(laneNum != 3){
+                laneNum += 1;
+                switchLanes();
+            }
+        }
+    }
+
+    void switchLanes(){
         switch(laneNum){
             case 1:
                 Debug.Log("Lane 1");
@@ -47,27 +73,6 @@ public class PlayerHealth : MonoBehaviour
             default:
                 Debug.Log("Out of range, not moving lanes.");
                 break;
-        }
-    }
-
-    void OnTriggerEnter(Collider col) {
-        //Check for enemy or obstacle damage
-        if(col.tag == "Enemy" || col.tag == "Obstacle"){
-            health = 0;
-            gm.gameOver();
-        }
-    }
-
-    //takes player input to change lanes
-    void playerInput(){
-        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A)){
-            if(laneNum != 1){
-                laneNum -= 1;
-            }
-        }else if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D)){
-            if(laneNum != 3){
-                laneNum += 1;
-            }
         }
     }
 
