@@ -33,13 +33,13 @@ public class LevelGenerator : MonoBehaviour
             //spawn enemy
             switch(tempLaneNum){
                 case 1:
-                    Instantiate(obstacles[0], new Vector3(-2f,1f,50f), gameObject.transform.rotation);
+                    Instantiate(obstacles[0], new Vector3(gm.lane1Coord,1f,50f), gameObject.transform.rotation);
                     break;
                 case 2:
                     Instantiate(obstacles[0], new Vector3(0f,1f,50f), gameObject.transform.rotation);
                     break;
                 case 3:
-                    Instantiate(obstacles[0], new Vector3(2f,1f,50f), gameObject.transform.rotation);
+                    Instantiate(obstacles[0], new Vector3(gm.lane3Coord,1f,50f), gameObject.transform.rotation);
                     break;
                 default:
                     break;
@@ -56,13 +56,13 @@ public class LevelGenerator : MonoBehaviour
             int tempObjNum = Random.Range(2,3);             //pick obstacle to spawn
             switch(tempLaneNum){
                 case 1:
-                    Instantiate(obstacles[tempObjNum], new Vector3(-2f,.5f,50f), gameObject.transform.rotation);
+                    Instantiate(obstacles[tempObjNum], new Vector3(gm.lane1Coord,.5f,50f), gameObject.transform.rotation);
                     break;
                 case 2:
                     Instantiate(obstacles[tempObjNum], new Vector3(0f,.5f,50f), gameObject.transform.rotation);
                     break;
                 case 3:
-                    Instantiate(obstacles[tempObjNum], new Vector3(2f,.5f,50f), gameObject.transform.rotation);
+                    Instantiate(obstacles[tempObjNum], new Vector3(gm.lane3Coord,.5f,50f), gameObject.transform.rotation);
                     break;
                 default:
                     break;

@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     GameObject playerObj;
 
     //LevelGen
+    public float lane1Coord = -2.4f;                        //coordinates of lane 1
+    public float lane3Coord = 2.4f;
     public int enemies = 0;
     public int obstacles = 0;
     

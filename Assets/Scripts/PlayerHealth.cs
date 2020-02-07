@@ -18,7 +18,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Update(){
         playerInput();
-        //player movement between lanes
     }
 
     void OnTriggerEnter(Collider col) {
@@ -49,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
             case 1:
                 Debug.Log("Lane 1");
                 if(canMove){
-                    gameObject.transform.position = new Vector3(-2f,0f,0f);
+                    gameObject.transform.position = new Vector3(gm.lane1Coord,0f,0f);
                     StartCoroutine(moveCooldown());
                 }
                 break;
@@ -65,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
             case 3:
                 Debug.Log("Lane 3");
                 if(canMove){
-                    gameObject.transform.position = new Vector3(2f,0f,0f);
+                    gameObject.transform.position = new Vector3(gm.lane3Coord,0f,0f);
                     StartCoroutine(moveCooldown());
                 }
                 break;
