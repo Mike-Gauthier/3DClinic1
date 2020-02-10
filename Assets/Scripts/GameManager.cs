@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     //Scripts
     LevelGenerator generator;           
     PlayerHealth player;
+
     
     //Various
     bool playerAlive = true;
